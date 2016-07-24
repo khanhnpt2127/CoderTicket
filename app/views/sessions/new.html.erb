@@ -1,0 +1,14 @@
+
+<div class="container ctn-2">
+  <%= form_tag sessions_path do %>
+    <div class="form-control">
+      <%= text_field_tag :email, "", placeholder: "Enter your Email" %>
+    </div>
+
+    <div class="form-control">
+      <%= password_field_tag :password, "", placeholder: "Enter your Password" %>
+    </div>
+    
+      <%= submit_tag "Submit", class: "btn btn-info"%>
+  <% end %>
+</div>

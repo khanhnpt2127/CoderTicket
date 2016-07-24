@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151215104433) do
+ActiveRecord::Schema.define(version: 20160724060444) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,8 +30,9 @@ ActiveRecord::Schema.define(version: 20151215104433) do
     t.text     "extended_html_description"
     t.integer  "category_id"
     t.string   "name"
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.datetime "created_at",                                null: false
+    t.datetime "updated_at",                                null: false
+    t.boolean  "published",                 default: false
   end
 
   add_index "events", ["category_id"], name: "index_events_on_category_id", using: :btree
@@ -53,6 +54,16 @@ ActiveRecord::Schema.define(version: 20151215104433) do
   end
 
   add_index "ticket_types", ["event_id"], name: "index_ticket_types_on_event_id", using: :btree
+
+  create_table "users", force: :cascade do |t|
+    t.string   "name"
+    t.string   "email"
+    t.string   "password_digest"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "users", ["email"], name: "index_users_on_email", using: :btree
 
   create_table "venues", force: :cascade do |t|
     t.string   "name"
